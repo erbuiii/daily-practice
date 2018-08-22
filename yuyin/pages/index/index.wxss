@@ -1,0 +1,101 @@
+/**index.wxss**/
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+}
+/* 测试按钮  */
+.test-btn {
+  margin-top: 112rpx;
+  width: 240rpx;
+  height: 240rpx;
+  line-height: 240rpx;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  border-radius: 120rpx;
+  background-color: #FAA99B;
+}
+.test-btn::after {
+  border: 0;
+}
+
+/* 图片  */
+.img {
+  position: relative;
+  width: 542rpx;
+  height: 542rpx;
+  margin-left: 46rpx;
+  margin-top: 30rpx;
+}
+/* 快速测试按钮  */
+.fast-test-btn {
+  position: absolute; 
+  left: 100rpx;
+  top: 316rpx;
+  font-size: 20px;
+  color: #666;
+  background-color: rgba(0, 0, 0, 0);
+}
+.fast-test-btn::after {
+  border: 0;
+}
+
+/*弹窗*/
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9000;
+}
+
+.modalDlg {
+  width: 66%;
+  height: 60%;
+  position: fixed;
+  z-index: 9999;  
+  margin: 25% 17%;
+  background-color: #fff;
+  border-radius: 36rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-btn {
+  width: 100%;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 28rpx;
+  color: #666;
+  background-color: #EED9B0;
+  border-radius: 0;  
+}
+/* 去掉按钮默认样式 */
+.back-btn::after {
+  border: 0;
+  border-radius: 0;
+}
+/*滚动  */
+.scroll-y {
+  height: 100%;
+  overflow: hidden; 
+}
+
+.test-list {
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  border-bottom: 0.6rpx solid;
+  border-bottom-color: #d0d0d0;
+}
+
+.test-title {
+  margin-left: 36rpx;
+}

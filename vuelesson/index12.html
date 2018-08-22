@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>filters</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 第一个参数 | （第二个参数） -->
+		{{msg | upperCase(true)}}
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				msg: "hello world"
+			},
+			filters: {
+				upperCase: function(val, isFirstWord) {
+					val = val.toString();
+					if(isFirstWord) {
+						return val.charAt(0).toUpperCase() + val.slice(1);
+					} else {
+						return val.toUpperCase();
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

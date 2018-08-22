@@ -1,0 +1,33 @@
+<!--pages/test.wxml-->
+  <view class='bg'>  
+    <view class='container'>
+      <view class='userInfo'>
+        <view class='userName'>
+          <text style='font-size:25px'>{{userInfo.nickName}}</text>
+          
+          <text style='font-size:small'>\n个性签名</text>
+        </view>
+        <view class='avatarBox'>
+          <image src="{{userInfo.avatarUrl}}" class="avatar" />
+        </view>
+      </view>
+      <view class='functionCard'>
+        <view class='functionCardDet'>
+          <image src="../../images/favorite.png" class='icon' mode="aspectFit"/>
+          <text class="functionTxt">试题收藏</text>
+        </view>
+        <view class='functionCardDet'>
+          <image src="../../images/history.png" class='icon' mode="aspectFit"/>
+          <text class="functionTxt">历史记录</text>
+        </view>
+        <view class='functionCardDet'>
+          <image src="../../images/update.png" class='icon' mode="aspectFit"/>
+          <text class="functionTxt">版本更新</text>
+        </view>
+        <view class='functionCardDet' bindtap='toNew'>
+          <image src="../../images/aboutUs.png" class='icon' mode="aspectFit"/>
+          <text class="functionTxt" >关于我们</text>
+        </view>
+      </view> 
+    </view>
+  </view>  

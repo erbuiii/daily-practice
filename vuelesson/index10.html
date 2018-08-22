@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计算属性computed</title>
+	<meta charset="utf-8">
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>{{num}}</div>
+		<!-- <div>{{getFullName()}}</div> -->
+		<!-- <div>{{fullName}}</div>
+		<div>{{fullName}}</div> -->
+		<div>{{newFullName}}</div>
+		<button v-on:click="num++">add</button>
+		<button v-on:click="changeName">change name</button>
+		<button v-on:click="changeFullName">change fullName</button>
+	</div>
+
+
+</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				num: 0,
+				firstName: "buiii",
+				lastName: "wang"
+			},
+			// 每次点击add，getFullName也会渲染一遍（但其实只需要在改变时渲染即可）
+			// methods: {
+			// 	getFullName: function () {
+			// 		alert("我执行了");
+			// 		return this.firstName + " " + this.lastName;
+			// 	}
+			// }
+
+			//计算属性：computed --> 监听数据变化
+			//Vue会分析计算属性函数内的代码，发现函数依赖firstName，lastName两个属性值
+			//只有当firstName，lastName依赖的数据发生变化时，该函数才执行
+			//此时调用函数只需要写成引用（属性）形式即可：{{fullName}}
+
+			computed: {
+				fullName: function () {
+					//计算属性有一个缓存机制，再次执行会走缓存代码；再用到fullName，也只执行一次
+					alert("我执行了");
+					return this.firstName + " " + this.lastName;
+				},
+				newFullName: {
+					//get：当获取firstName,lastName-->this.newfullName值的时候使用
+					//当执行set之后，依赖值改变，又会执行get
+					get: function () {
+						alert("我执行了get");
+						return this.firstName + " " + this.lastName;
+					},
+					//set：当设置newFullName的值的时候使用
+					set: function (newValue) {
+						alert("我执行了set");
+						var arr = newValue.split(" ");
+						this.firstName = arr[0];
+						this.lastName = arr[1];
+					}
+				}
+			},
+			methods: {
+				changeName: function () {
+					this.firstName = "ming";
+					this.lastName = "xiao";
+				},
+				changeFullName: function () {
+					this.newFullName = "xiao hong";
+				},
+				getFullName: function () {
+					// 这里如果再{{getFullName()}}，会执行两遍
+					alert("我执行了");
+					return this.firstName + " " + this.lastName;
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+		{{age * 2}} 	<!-- 简单表达式 -->
+		{{age > 60 ? "old" : "young"}}
+		{{firstName + " " + lastName}}
+		{{fullName.split(" ")[1]}}
+
+		<!-- 两种使用方法的方式 -->
+		{{ getFullName() }}
+		{{ getFullName(firstName, lastName) }}
+	</div>
+	<script type="text/javascript">
+		
+		//vue实例
+		var vm = new Vue({
+			el: "#app",		//选择控制哪一段html代码
+			data: {
+				message: 'hello worlfd',
+				age : 30,
+				lastName : "liu",
+				firstName : "luwei",
+				fullName : "luwei liu"
+			},
+			methods: {
+				getFullName : function (fir) {
+					//this代表这个vue实例
+					return this.firstName + " " + this.lastName;
+				}
+
+				// getFullName : function (first, last) {
+				// 	//this代表这个vue实例
+				// 	return first + " " + last;
+				// }
+
+				//Es6：不能用箭头函数定义methods里面的函数（要借由this获取实例），箭头函数没有this
+			}		
+		})
+
+
+
+	</script>
+</body>
+</html>

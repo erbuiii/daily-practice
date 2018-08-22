@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/test/test",
+    "pages/user/user"    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#666",
+    "backgroundColor": "#EED9B0",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon/荷花黑白.png",
+        "selectedIconPath": "images/icon/荷花.png",
+        "text": "机考"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icon/桃花黑白.png",
+        "selectedIconPath": "images/icon/桃花.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css动态样式</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 对象=>键值对 v-bind:style="{ 'background-color' }" 或 "{backgroundColor}"-->
+		<!-- 通过数组来添加多个样式 -->
+		<div style="height: 200px; width: 200px;"
+			v-bind:style="[styles1,styles2]"></div>
+		<button v-on:click="change">change</button>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				color: "red",
+				// styles: {
+				// 	'background-color': this.color,
+				// }
+				// data里面的this获取不到值
+			},
+			//依赖数据this.color --> 跳到计算属性computed里面执行
+			computed: {
+				styles1 : function () {
+					return {
+						'background-color': this.color
+					}
+				},
+				styles2: function () {
+					return {
+						'border-radius': "10px"
+					}
+				}
+			},
+			methods: {
+				change: function() {
+					if(this.color ==="yellow") {
+						this.color = "red";
+					} else {
+						this.color = "yellow";
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

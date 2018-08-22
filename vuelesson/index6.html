@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{html}}
+		<!-- 当作字符串来渲染：防止xss跨域脚本攻击/用户随意更改HTML的dom --> 	
+
+		<!-- v-html：当作dom节点来输出（慎用） -->
+		<div v-html="html"></div>
+
+		<!-- v-once：只渲染一次 -->
+		<div v-once> {{message}} </div>	{{message}}
+		<button v-on:click="message = '123'">click me!</button>
+
+	</div>
+
+	<!-- 隐藏DOM点的两种方式 -->
+	<!-- v-if：条件判断 (把所有的dom节点都干掉)-->
+	<!-- v-show：display none -->
+
+	<div id="app1">
+		<!-- 必须是兄弟节点 -->
+		<p v-if="items > 10">{{items}} 个现货</p>
+		<p v-else-if="items > 1">所剩不多了，快点买吧！</p>
+		<p v-else>没有库存了，请耐心等待</p>
+		<!-- 同一个条件，判断多个语句 -->
+		<!-- template节点并不会渲染出来 -->
+		<template v-if="items > 50">
+			<p>注意事项</p>
+			<p>因为剩余很多，现在买打八折哦！</p>
+		</template>
+		
+		<p v-show="Ninja">i am hidden</p>
+		<p v-show="!Ninja">i am here</p>
+		<button v-on:click="Ninja = !Ninja">Ninja skills</button>
+	</div>
+
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				html : "<h1>hello</h1>",
+				message : "erbuiii"
+			}
+		})
+
+		new Vue({
+			el : '#app1',
+			data : {
+				items: 100,
+				Ninja: true
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>全局组件</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<my-component></my-component>
+	</div>
+	<script type="text/javascript">
+		Vue.component("my-component", {
+			template: `
+				<div>
+					<button @click="clickMe">{{count}}</button>
+				</div>`,
+			data: function() {
+				//写成函数：返回一个新的对象 --> 
+				//方便应用多个组件时，数据时一一对应的，而不是多对一，互不影响
+				return {
+					count: 0
+				}
+			},
+			methods: {
+				clickMe: function() {
+					this.count ++;
+				}
+			}
+		})
+		var vm = new Vue ({
+			el : '#app',
+		})
+	</script>
+</body>
+</html>

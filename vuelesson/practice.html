@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 输出一个电影的名字和上映日期 -->
+		电影名：{{movieTitle}}
+		上映日期：{{movieDate}}
+		<!-- 判断一部电影是否时新电影（>2000年）-->
+		这部电影是{{getMovie()}}电影
+		<!-- title绑定 -->
+		<div v-bind:title="movieTitle">
+			hover me!!
+		</div>
+	</div>
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				movieTitle : "妖猫传",
+				movieDate : "2017"
+			},
+			methods : {
+				getMovie: function () {
+					return this.movieDate > 2000 ? "新" : "旧"
+				}
+			}
+		})
+	</script>
+</body>
+</html>

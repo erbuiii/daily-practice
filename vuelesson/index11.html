@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>watch属性</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="searchInfo">
+		<div v-if="showSearching">正在搜索···</div>
+		<ul>
+			<li v-for="item in results">{{item}}</li>
+		</ul>
+	</div>
+
+	<!-- 
+		computed & watch 区别
+		1.	有return值 ==> computed
+			没有return值 ==> watch 
+		2.	computed里面必须写同步的代码
+			watch内部可以写异步操作
+	 -->
+	 
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var app = new Vue ({
+			el : '#app',
+			data : {
+				searchInfo: "",
+				showSearching: false,
+				results: []
+			},
+
+			//监听数据变化
+			watch: {
+				//属性名是要监听变化的数据
+				//函数第一个参数query：改变searchInfo新的数据值
+				searchInfo: function (query) {
+					// console.log(query);
+					this.showSearching = true;
+					console.log(this);	//这里的this指向vue实例
+
+					//模拟异步操作，非严格模式下，该函数里this指向window（该函数没有人调用，是自己执行的）
+					// setTimeout(function () {
+					// 	console.log(this);
+					// 	this.results = ["html","css","js"];
+					// 	console.log(this.results);	//此时改变了值但没有输出
+					// },500)
+
+					//解决方法一：箭头函数（自身没有this指向，this指向借助父级作用域），此时内部this也指向vue实例
+					setTimeout(()=> {
+						console.log(this);
+						this.results = ["html","css","js"];
+						this.showSearching = false;
+					},500)
+
+					//解决方法二：把this指向保存为一个变量
+					var vm = this;
+					setTimeout(function () {
+						console.log(vm);
+						vm.results = ["html","css","js"];
+						vm.showSearching = false;
+					},500)
+				}
+
+			}
+		})
+	</script>
+</body>
+</html>

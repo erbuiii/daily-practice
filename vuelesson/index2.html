@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<a v-bind:href="url">baidu</a>
+	</div>
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				url: "https://www.baidu.com"
+			}
+		})
+	</script>
+</body>
+</html>

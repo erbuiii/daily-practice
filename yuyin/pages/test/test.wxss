@@ -1,0 +1,12 @@
+/* pages/test/test.wxss */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+}
+
+/* 题目部分  */
+.quiz {
+  width: 90%;
+}

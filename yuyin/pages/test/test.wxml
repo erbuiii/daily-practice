@@ -1,0 +1,6 @@
+<!--pages/test/test.wxml-->
+<view class='wrapper'>
+  <view class='quiz'>
+    <text>{{motto}}</text>
+  </view>
+</view>

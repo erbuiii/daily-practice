@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>通过改变类来改变样式</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<style type="text/css">
+		.shape {
+			height:  150px;
+			width: 150px;background-color;
+			float: left;
+			margin: 10px;
+		}
+		.circle {
+			background: red;
+			border-radius: 50%;
+		}
+		.square {
+			background-color: blue;
+		}
+		.triangle {
+			width: 0;
+			height: 0;
+		}
+		.up {
+			border-left: 100px solid transparent;
+			border-right: 100px solid transparent;
+			border-bottom: 150px solid orange;
+		}
+		.down {
+			border-left: 100px solid transparent;
+			border-right: 100px solid transparent;
+			border-top: 150px solid green;
+		}
+		.animation {
+			animation: strentch 1.5s ease-out
+		}
+		@keyframes strentch {
+			0% {
+				transform: scale(0.3);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- 1.通过显示/隐藏类来改变效果：true/false -->
+		<!-- <div v-for="shape in shapes" class="shape" -->
+			<!-- v-bind:class="{circle: shape.isRound, square: !shape.isRound}"></div> -->
+
+		<!-- 2.通过改变类的名字 -->
+		<div v-for="shape in shapes" class="shape"
+			v-bind:class="[shape.shape, shape.direction?shape.direction:'', {animation: shape.animation}]"></div>
+
+		<!-- v-bind: 可以简写为 : -->
+		<!-- v-on: 可以简写为 @ -->
+
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				// shapes: [
+				// 	{isRound: true},
+				// 	{isRound: false}
+				// ],
+				shapes: [
+					{
+						shape: 'circle',
+						animation: true
+					},
+					{
+						shape: 'square',
+						animation: true
+					},
+					{
+						shape: 'triangle',
+						direction: 'up'
+					},
+					{
+						shape: 'triangle',
+						direction: 'down'
+					},
+				]
+			}
+		})
+	</script>
+</body>
+</html>

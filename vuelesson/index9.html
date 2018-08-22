@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-for(2)</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="number in numbers">
+				{{number}}
+			</li>
+		</ul>
+		<button v-on:click="changeNumber">click me</button>
+	</div>
+	<div id="app1">
+		<!-- v-for运行机制：模板复用，节省性能 -->
+
+		<!-- 有bug：input框里的值没有改变 -->
+		<!-- 使用的是一个模板，三个input框渲染成一个 -->
+		<!-- 解决方法：给每一个绑定一个key值，每个的id都不同，多以都会渲染一次 -->
+		<div v-for="item in persons" v-bind:key="item.id">
+			{{item.id}} : {{item.name}} <input type="text">
+		</div>
+		<button v-on:click="add">add</button>
+		<button v-on:click="reverse">reverse</button>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				numbers : [1,2,3,4,5]
+			},
+			methods: {
+				changeNumber: function () {
+					// this.numbers[1] = 10;
+					// alert的数改变，但显示的数还是不变 --> 元素值改变但数组的索引没有改变
+
+					//改变数组索引进行DOM渲染
+					Vue.set(this.numbers, 1, 10)
+					alert(this.numbers[1]);
+				}
+			}
+		})
+
+		new Vue({
+			el: "#app1",
+			data: {
+				persons: [{
+					id: 1,
+					name: "buiii"
+				}, {
+					id: 2,
+					name: "lu"
+				}, {
+					id: 3,
+					name: "xiaowang"
+				}]
+			},
+			methods: {
+				add: function () {
+					//push方法可以检测到数组内部的变化
+					//vue底层对数组的push,pop,shift,unshift,reverse,sort,splice方法进行了重写
+					this.persons.push({
+						id: 4,
+						name: "xiaoliu"
+					})
+				},
+				reverse: function () {
+					this.persons.reverse()
+				}
+			}
+		})
+	</script>
+</body>
+</html>

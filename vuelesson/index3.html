@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 绑定一个事件：事件函数有两种写法 -->
+		<!-- ①直接写一个函数（引用） ②函数执行的模式：必须注入event事件对象 -->
+		<!-- $event：当前事件的事件对象 -->
+		<div v-on:click="showsome(3425,$event)">
+			<!-- 事件修饰符 -->
+			<!-- .stop：阻止事件冒泡 -->
+			<button v-on:click.stop="showsome(1, $event)">click me!!!</button>
+		</div>
+			<!-- .prevent：阻止默认事件 a标签跳转页面-->
+		<a href="https://baidu.com" v-on:click.prevent = "showsome">link me!!</a>
+	</div>
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+			},
+			methods : {
+				showsome : function (msg, event) {
+					alert("show something")
+				}
+			}
+		})
+	</script>
+</body>
+</html>

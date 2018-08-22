@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>双向数据绑定</title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{ value }}
+		<!-- <input type="text" v-bind:value="value" v-on:input="input"> -->
+		<!-- 双向数据绑定：v-bind + v-on（二者原理相反）= v-model -->
+		<!-- 会覆盖掉后面写的value属性值 -->
+		<input type="text" v-model="value">
+
+		<!-- v-model修饰符 -->
+		<!-- .trim：去掉空格 -->
+		<!-- .number：把value上输出的数据全变成数字（原本在输入框里输入的全部都是字符串） -->
+		<!-- .lazy：只有在失去焦点的时候才会绑定数据（原本每输入一次，值就会改变） -->
+
+		<!-- <input type="text" v-model.trim="value"> -->
+		<!-- {{typeof value}}
+		<input type="text" v-model.number="value">
+		<input type="text" v-model.lazy="value"> -->
+
+
+
+
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				value : 123
+			},
+			// methods : {
+			// 	//让数据获取到输入的东西
+			// 	input : function (event) {
+			// 		this.value = event.target.value;
+			// 	}
+			// }
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 按键修饰符：input框，触发enter键 -->
+		<!-- 可以链式地调用 -->
+		<input type="text" v-on:keyup.enter.space="keyup">
+		<!-- 系统修饰符：任何事件都可以触发，要和对应操作一起才会触发-->
+		<!-- keyup.shift：按住其他键一起，触发 -->
+		<!-- onclick.shift：点击+shift，触发 -->
+		<!-- meta：对应win键...针对不同操作系统不同 -->
+		<input type="text" v-on:keyup.shift="shift">
+		<button v-on:click.shift="shift">shift</button>
+
+	</div>
+	<script type="text/javascript">
+		//vue 指令 --> v-指令语法：指令参数=指令表达式
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				url: "https://www.baidu.com"
+			},
+			methods: {
+				// keyup : function (event) {
+					//回车键
+					// if(event.which == 13) {
+					// 	alert("you pressed enter");
+					// }
+				// } 
+				keyup : function () {
+						alert("you pressed enter");
+				},
+				shift : function () {
+					alert('shift');
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>电影列表</h1>
+		<ul>
+			<!-- 循环数组： 变量名 in 表达式-->
+			<!-- 索引：(变量名,第几位) -->
+			<li v-for="(title, i) in movies">{{title}}({{i}})</li>
+		</ul>
+		<table>
+			<thead>
+				<td>姓名</td>
+				<td>职位</td>
+				<td>公司</td>
+				<td>索引</td>
+			</thead>	
+			<tbody>
+				<!-- 数据绑定：对象点操作或普通的都可以 -->
+				<tr v-for="(person, index) in persons">
+					<td>{{person.name}}</td>
+					<td>{{person.title}}</td>
+					<td>{{company}}</td>
+					<td>({{index}})</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- 循环对象：(属性值，属性名，索引)  -->
+		<div v-for="(name, prop, index) in person">
+			{{prop}} ： {{name}} ({{index}})
+		</div>
+
+		<!-- 循环数字 -->
+		<div v-for="n in 15">{{n}}</div>
+
+		<!-- 循环字符串：输出每一位字符 -->
+		<div v-for="s in 'liuluwei'">{{s}}</div>
+	</div>
+	<script type="text/javascript">
+		
+		var vm = new Vue ({
+			el : '#app',
+			data : {
+				movies : ["妖猫传","芳华","至暗时刻"],
+				persons : [{
+					name : "liu",
+					title : "vue"
+				}, {
+					name : "wang",
+					title : "angular"
+				}, {
+					name : "zhang",
+					title : "react"
+				}],
+				company: "vue",
+				person : {
+					lastName : "liu",
+					firstName : "luwei",
+					age : 20
+				}
+			}
+		})
+	</script>
+</body>
+</html>
